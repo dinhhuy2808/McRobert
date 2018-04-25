@@ -1,0 +1,172 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>ACD</title>
+
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="Template, html, premium, themeforest" />
+    <meta name="description" content="Traveler - Premium template for travel companies">
+    <meta name="author" content="Tsoy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600' rel='stylesheet' type='text/css'>
+    <!-- /GOOGLE FONTS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <script src="js/modernizr.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- FACEBOOK WIDGET -->
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- /FACEBOOK WIDGET -->
+<div class="global-wrap">
+
+
+
+
+
+
+    <div class="container">
+
+
+
+        <br/>
+
+
+
+        <br/>
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <ul class="booking-list" id = "standard">
+                    </br>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h4 class="booking-item-title">Task Code</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="booking-item-title">Assignee</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="booking-item-title">Reporter</h4>
+                        </div>
+                        <div class="col-md-1">
+                            <h4 class="booking-item-title">Status</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="booking-item-title">Approved</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4 class="booking-item-title">Created Date</h4>
+                        </div>
+                    </div>
+
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>
+
+
+
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/slimmenu.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/bootstrap-timepicker.js"></script>
+    <script src="js/nicescroll.js"></script>
+    <script src="js/dropit.js"></script>
+    <script src="js/ionrangeslider.js"></script>
+    <script src="js/icheck.js"></script>
+    <script src="js/fotorama.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="js/typeahead.js"></script>
+    <script src="js/card-payment.js"></script>
+    <script src="js/magnific.js"></script>
+    <script src="js/owl-carousel.js"></script>
+    <script src="js/fitvids.js"></script>
+    <script src="js/tweet.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/gridrotator.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+
+            $.ajax({
+                type: "POST",
+                url: "./check-file",
+                data: "",
+                cache: false,
+                success: function (msg) {
+                    //alert(msg);
+                    data = msg.detail;
+                    var append = '\n';
+                    for(var i=0;i<data.length;i++){
+                        append += ' <div class="row">\n';
+                        append+='<div class="col-md-6">\n';
+                        var j=0;
+                        /*console.log(dataall[i].length);*/
+                        $.each(data[i], function(key, value) {
+
+                            if(j==1 || j==3){
+                                append+= '<p class="booking-item-title">'+key+'</p>\n';
+                                $.each(value, function(key1, value1) {
+                                    append+= '<p class="booking-item-title">'+key1+ ' : ' +value1+'</p>\n';
+                                });
+                                j++;
+                            }else{
+                                append+= '<p class="booking-item-title">'+key+ ' : ' +value+'</p>\n';
+                                j++;
+                            }
+
+                        });
+                        append+='</div>\n';
+                        append+='</div>\n';
+                    }
+
+
+
+                    /*result = datas.names;*/
+
+                    $('#standart').after(append);
+
+
+                }
+
+
+            });
+
+    </script>
+</div>
+</body>
+
+</html>
+
+
