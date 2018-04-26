@@ -42,7 +42,22 @@
 <!-- /FACEBOOK WIDGET -->
 <div class="global-wrap">
 
+    <header id="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="logo" href="/">
+                            <img src="img/ACD_Final_Logo_2.png" alt="Image Alternative text" title="Image Title" />
+                        </a>
+                    </div>
 
+
+                </div>
+            </div>
+        </div>
+
+    </header>
 
 
 
@@ -76,7 +91,55 @@
         <div class="gap"></div>
     </div>
 
+    <footer id="main-footer">
+        <div class="container">
+            <div class="row row-wrap">
 
+                <div class="col-md-3">
+                    <h4>Texas - HQ: </h4>
+                    <h5 class="text-color">Address: 2908 National Drive, Suite 100, Garland, TX 75041 </h5>
+                    <h5 class="text-color">Phone: 469.573.4008</h5>
+                    <h5 class="text-color">Fax:  972.278.2097</h5>
+
+
+                </div>
+                <div class="col-md-3">
+                    <h4>Florida - Design:</h4>
+                    <h5 class="text-color">Address: Miami, </h5>
+                    <h5 class="text-color">Phone:  847.920.7235 </h5>
+                    <h5 class="text-color">Fax:   972.278.2097</h5>
+
+
+                </div>
+                <div class="col-md-3">
+                    <h4>California - Sales:</h4>
+                    <h5 class="text-color">Address: San Jose, California </h5>
+                    <h5 class="text-color">Phone: 469.573.4008</h5>
+                    <h5 class="text-color">Fax:   972.278.2097</h5>
+
+
+                </div>
+                <div class="col-md-3">
+                    <h4>China - NPI Center:</h4>
+                    <h5 class="text-color">Address: Shanghai, China</h5>
+                    <h5 class="text-color">Phone:  469.573.4008</h5>
+                    <h5 class="text-color">Fax:  972.278.2097</h5>
+
+
+                </div>
+
+            </div>
+            <div class="row row-wrap">
+                <div class="col-md-4">
+                    <h5 class="text-color">Email: sales@austincircuit.com </h5>
+                    <h5><a href="http://www.austincircuitdesign.com/" class="text-color">http://www.austincircuitdesign.com/</a></h5>
+                    <p>Open Monday - Friday 08:00am - 06:00pm</p>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
 
 
 
@@ -105,6 +168,7 @@
         call();
         var myVar = setInterval(call, 5000);
         function call(){
+            /*$('#standard').clearAfter();*/
             $.ajax({
                 type: "POST",
                 url: "./check-file",
@@ -115,7 +179,7 @@
                     data = msg.detail;
                     var append = '\n';
                     for(var i=0;i<data.length;i++){
-                        append += '<a class="booking-item" href="#">\n';
+                        append += '<a class="booking-item" href="#" id="newRow" name="newRow">\n';
                         append += ' <div class="row" >\n';
 
                         var j=0;
@@ -161,7 +225,7 @@
 
                     /*result = datas.names;*/
 
-                    $('#standard').after(append);
+                    $('#standard').html(append);
 
 
                 }
