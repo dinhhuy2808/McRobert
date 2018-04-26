@@ -60,28 +60,11 @@
 
             <div class="col-md-12">
 
-                <ul class="booking-list" id = "standard">
+                <ul class="booking-list" >
                     </br>
 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <h4 class="booking-item-title">Task Code</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 class="booking-item-title">Assignee</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 class="booking-item-title">Reporter</h4>
-                        </div>
-                        <div class="col-md-1">
-                            <h4 class="booking-item-title">Status</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 class="booking-item-title">Approved</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <h4 class="booking-item-title">Created Date</h4>
-                        </div>
+                    <div class="row" id = "standard" name = "standard">
+
                     </div>
 
 
@@ -119,6 +102,9 @@
     <script src="js/custom.js"></script>
     <script>
 
+        call();
+        var myVar = setInterval(call, 5000);
+        function call(){
             $.ajax({
                 type: "POST",
                 url: "./check-file",
@@ -129,39 +115,61 @@
                     data = msg.detail;
                     var append = '\n';
                     for(var i=0;i<data.length;i++){
-                        append += ' <div class="row">\n';
-                        append+='<div class="col-md-6">\n';
+                        append += '<a class="booking-item" href="#">\n';
+                        append += ' <div class="row" >\n';
+
                         var j=0;
                         /*console.log(dataall[i].length);*/
-                        $.each(data[i], function(key, value) {
-
-                            if(j==1 || j==3){
-                                append+= '<p class="booking-item-title">'+key+'</p>\n';
-                                $.each(value, function(key1, value1) {
-                                    append+= '<p class="booking-item-title">'+key1+ ' : ' +value1+'</p>\n';
-                                });
-                                j++;
-                            }else{
-                                append+= '<p class="booking-item-title">'+key+ ' : ' +value+'</p>\n';
-                                j++;
+                        $.each(data[i]._data, function(key, value) {
+                            if(j==0){
+                                append+='<div class="col-md-2">\n';
+                            }else if(j==1){
+                                append+='<div class="col-md-4">\n';
+                            }else if(j==2){
+                                append+='<div class="col-md-2">\n';
+                            }else {
+                                append+='<div class="col-md-4">\n';
                             }
 
+                            if(typeof  value[1]._data === 'object'){
+                                append += ' <div class="row" >\n';
+                                append+= '<h5 class="booking-item-title" style="color:red ">'+key+'</h5>\n';
+                                $.each(value[1]._data, function(key1, value1) {
+
+                                    append+= '<p class="booking-item-title">'+value1[0]+ ' : ' +value1[1]+'</p>\n';
+                                });
+                                append+='</div>\n';
+                                j++;
+                            }else{
+                                append += ' <div class="row" >\n';
+                                append+= '<h5 class="booking-item-title" style="color:red ">'+value[0]+ '</h5>\n';
+                                append+='</div>\n';
+                                append += ' <div class="row" >\n';
+                                append+= '<p class="booking-item-title">'+value[1]+'</p>\n';
+                                append+='</div>\n';
+                                j++;
+                            }
+                            append+='</div>\n';
                         });
+
                         append+='</div>\n';
-                        append+='</div>\n';
+                        append+='</a>\n';
                     }
+
 
 
 
                     /*result = datas.names;*/
 
-                    $('#standart').after(append);
+                    $('#standard').after(append);
 
 
                 }
 
 
             });
+        }
+
 
     </script>
 </div>

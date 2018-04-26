@@ -41,11 +41,13 @@ exports.check_file=function(req,res){
                 for(var k =0;k<keys.length;k++){
 
                     /*console.log(keys[k])*/
+                    /*console.log(JSON.stringify(input[j][keys[k]]));*/
+                    var inputchild = JSON.parse(JSON.stringify(input[j][keys[k]]));
 
-                    if(k == 1 || k== 3){
-                        var inputchild = JSON.parse(JSON.stringify(input[j][keys[k]]));
+                    if(typeof inputchild == 'object'){
+
                         /*console.log(keys[k])*/
-                        /* console.log(inputchild);*/
+                       /* console.log(inputchild);*/
                         var keysChild = Object.keys(inputchild);
                         /*console.log(keysChild);*/
                         var mapChild = new HashMap();
@@ -66,33 +68,32 @@ exports.check_file=function(req,res){
                 }
 
             }
-
+            console.log('-----------------')
             dataall.push(map);
 
         }
         /* console.log(dataall);*/
-        for(var i=0;i<dataall.length;i++){
+        /*for(var i=0;i<dataall.length;i++){
             var j=0;
-            /*console.log(dataall[i].length);*/
+            /!*console.log(dataall[i].length);*!/
             dataall[i].forEach(function(value, key) {
 
                 if(j==1 || j==3){
-                   /* console.log(key);*/
+                   /!* console.log(key);*!/
 
                     value.forEach(function(value1, key1) {
-                       /* console.log(key1 + " : " + value1);*/
+                       /!* console.log(key1 + " : " + value1);*!/
                     });
                     j++;
                 }else{
 
-                    /*console.log(key + " : " + value);*/
+                    /!*console.log(key + " : " + value);*!/
                     j++;
                 }
 
             });
-            /*console.log('--------------')*/
-        }
-        console.log(dataall.length);
+            /!*console.log('--------------')*!/
+        }*/
         data={status:'exist',code:'300' ,detail:dataall};
         res.json(data);
     });
